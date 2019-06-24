@@ -12,6 +12,9 @@ jobs:
       - checkout
       - newman/newman-run:
           collection: ./collection.json
+      - run:
+          name: run newman
+          command: newman run collection.json
   build:
     docker:
       # specify the version you desire here
