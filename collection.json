@@ -15,7 +15,8 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
-							"});"
+							"});",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -50,12 +51,23 @@
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Response time is less than 200ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(400);",
+							"pm.test(\"Response time is less than 1500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);",
 							"});",
 							"",
 							"pm.test(\"Body matches string\", function () {",
 							"    pm.expect(pm.response.text()).to.include(\"code\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Json Value Check\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(200);",
+							"});",
+							"",
+							"pm.test(\"Json Value Check 2\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.text[0]).to.eql('Bonjour');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -92,6 +104,56 @@
 							"key": "lang",
 							"value": "en-fr"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Placeholder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae49af7b-11f1-4237-8163-af92b1548511",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    //console.log(jsonData[0].userId);",
+							"    pm.expect(jsonData[0].userId).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://jsonplaceholder.typicode.com/todos",
+					"protocol": "http",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"todos"
 					]
 				}
 			},
