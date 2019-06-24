@@ -130,7 +130,7 @@
 							"pm.test(\"Your test name\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    //console.log(jsonData[0].userId);",
-							"    pm.expect(jsonData[0].userId).to.eql(1);",
+							"    pm.expect(jsonData[0].userId).to.eql(5);",
 							"});",
 							"",
 							"pm.test(\"Response time is less than 200ms\", function () {",
